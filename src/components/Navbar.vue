@@ -1,7 +1,7 @@
 <template>
   <div class="m-4">
     <nav
-      class="bg-white dark:bg-black-200 backdrop-blur-md shadow-lg rounded-3xl"
+      class="bg-white dark:bg-black-200 backdrop-blur-md shadow-lg rounded-3xl shadow-gray-300/50 dark:shadow-gray-700/50"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">

@@ -1,7 +1,7 @@
 <template>
   <div
     class="relative min-h-screen w-full overflow-hidden"
-    :class="darkMode ? 'bg-white' : 'bg-black'"
+    :class="darkMode ? 'bg-black' : 'bg-white'"
   >
     <!-- พื้นหลังเส้น (สีตรงข้ามกับพื้นหลัง) -->
     <canvas
@@ -38,7 +38,7 @@ export default {
 
     // กำหนดพารามิเตอร์ของเส้น
     const LINE_COUNT = 100;
-    const LINE_SPEED = 1.5;
+    const LINE_SPEED = 0.5;
     const MOUSE_SENSITIVITY = 0.2;
 
     class Line {
@@ -95,8 +95,8 @@ export default {
         ctx.lineTo(endX, endY);
         // เปลี่ยนสีเส้นตาม darkMode
         const lineColor = darkMode.value
-          ? "rgba(0, 0, 0, "
-          : "rgba(255, 255, 255, ";
+          ? "rgba(255, 255, 255, " // โหมดดำ เส้นขาว
+          : "rgba(0, 0, 0, "; // โหมดขาว เส้นดำ
         ctx.strokeStyle = `${lineColor}${this.opacity})`;
         ctx.lineWidth = 1;
         ctx.stroke();

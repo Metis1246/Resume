@@ -3,7 +3,7 @@
     <!-- MAIN SECTION -->
     <div class="flex flex-col md:flex-row min-h-[80vh] px-5 md:px-[5%]">
       <div
-        class="flex-1 flex flex-col justify-center text-white dark:text-black"
+        class="flex-1 flex flex-col justify-center text-black dark:text-white"
       >
         <div class="text-xl mb-4 opacity-80">สวัสดีครับ</div>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">เมธีส นาเหมือง</h1>
@@ -22,7 +22,7 @@
 
     <!-- SCROLL INDICATOR -->
     <div
-      class="text-center animate-pulse mt-[-30px] text-white dark:text-black"
+      class="text-center animate-pulse mt-[-30px] text-black dark:text-white"
     >
       <p class="mb-1.5 text-xs tracking-widest">SCROLL</p>
       <div
@@ -36,7 +36,7 @@
     <!-- ABOUT SECTION -->
     <div
       ref="aboutSection"
-      class="min-h-[10vh] px-5 md:px-[5%] pt-32 md:pt-44 py-16 text-center text-lg opacity-0 translate-y-10 transition-all duration-1000 ease-in-out text-white dark:text-black"
+      class="min-h-[10vh] px-5 md:px-[5%] pt-32 md:pt-44 py-16 text-center text-lg opacity-0 translate-y-10 transition-all duration-1000 ease-in-out text-black dark:text-white"
     >
       <h2
         ref="aboutTitle"
@@ -60,7 +60,7 @@
     <!-- SKILLS SECTION -->
     <div
       ref="skillsSection"
-      class="min-h-[10vh] px-5 md:px-[5%] pt-32 md:pt-44 py-16 text-center text-lg opacity-0 translate-y-10 transition-all duration-1000 ease-in-out text-white dark:text-black"
+      class="min-h-[10vh] px-5 md:px-[5%] pt-32 md:pt-44 py-16 text-center text-lg opacity-0 translate-y-10 transition-all duration-1000 ease-in-out text-black dark:text-white"
     >
       <h2
         ref="skillsTitle"
@@ -86,7 +86,7 @@
               v-for="(skill, index) in frontendSkills"
               :key="index"
               :ref="(el) => (skillsRefs.frontend[index] = el)"
-              class="bg-white dark:bg-black rounded-lg p-4 shadow-lg flex flex-col items-center justify-center opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white"
+              class="bg-white dark:bg-black rounded-lg p-4 shadow-lg flex flex-col items-center justify-center opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white shadow-gray-300/50 dark:shadow-gray-700/50"
             >
               <img :src="skill.icon" :alt="skill.name" class="h-16 w-16 mb-3" />
               <span class="font-medium">{{ skill.name }}</span>
@@ -109,7 +109,7 @@
               v-for="(skill, index) in backendSkills"
               :key="index"
               :ref="(el) => (skillsRefs.backend[index] = el)"
-              class="bg-white dark:bg-black rounded-lg p-4 shadow-lg flex flex-col items-center justify-center opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white"
+              class="bg-white dark:bg-black rounded-lg p-4 shadow-lg flex flex-col items-center justify-center opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white shadow-gray-300/50 dark:shadow-gray-700/50"
             >
               <img :src="skill.icon" :alt="skill.name" class="h-16 w-16 mb-3" />
               <span class="font-medium">{{ skill.name }}</span>
@@ -132,7 +132,7 @@
               v-for="(skill, index) in databaseSkills"
               :key="index"
               :ref="(el) => (skillsRefs.database[index] = el)"
-              class="bg-white dark:bg-black rounded-lg p-4 shadow-lg flex flex-col items-center justify-center opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white"
+              class="bg-white dark:bg-black rounded-lg p-4 shadow-lg flex flex-col items-center justify-center opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white shadow-gray-300/50 dark:shadow-gray-700/50"
             >
               <img :src="skill.icon" :alt="skill.name" class="h-16 w-16 mb-3" />
               <span class="font-medium">{{ skill.name }}</span>
@@ -155,7 +155,7 @@
               v-for="(skill, index) in serverSkills"
               :key="index"
               :ref="(el) => (skillsRefs.server[index] = el)"
-              class="bg-white dark:bg-black rounded-lg p-4 shadow-lg flex flex-col items-center justify-center opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white"
+              class="bg-white dark:bg-black rounded-lg p-4 shadow-lg flex flex-col items-center justify-center opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white shadow-gray-300/50 dark:shadow-gray-700/50"
             >
               <img :src="skill.icon" :alt="skill.name" class="h-16 w-16 mb-3" />
               <span class="font-medium">{{ skill.name }}</span>
@@ -178,7 +178,7 @@
               v-for="(skill, index) in toolsSkills"
               :key="index"
               :ref="(el) => (skillsRefs.tools[index] = el)"
-              class="bg-white dark:bg-black rounded-lg p-4 shadow-lg flex flex-col items-center justify-center opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white"
+              class="bg-white dark:bg-black rounded-lg p-4 shadow-lg flex flex-col items-center justify-center opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white shadow-gray-300/50 dark:shadow-gray-700/50"
             >
               <img :src="skill.icon" :alt="skill.name" class="h-16 w-16 mb-3" />
               <span class="font-medium">{{ skill.name }}</span>
@@ -194,24 +194,25 @@
     >
       <h2
         ref="experienceTitle"
-        class="text-3xl font-bold mb-8 opacity-0 translate-y-5 transition-all duration-700"
+        class="text-3xl font-bold mb-8 opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white"
       >
         ประสบการณ์
       </h2>
 
-      <div class="max-w-4xl mx-auto">
+      <div class="max-w-3xl mx-auto">
         <!-- Experience Item -->
         <div
-          class="bg-white dark:bg-black rounded-xl p-6 md:p-8 shadow-lg mb-6 text-left opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white"
+          class="bg-white dark:bg-black rounded-xl p-6 md:p-8 shadow-lg mb-6 text-left opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white shadow-gray-300/50 dark:shadow-gray-700/50"
           ref="experienceItem1"
         >
-          <h3 class="text-2xl font-semibold mb-2">Lannacom Company Limited</h3>
-          <p class="text-lg opacity-80 mb-4">2024-2025</p>
+          <h3 class="text-2xl font-semibold mb-2">บริษัท ลานานคอม จำกัด</h3>
+          <p class="text-lg opacity-80 mb-4">พฟศจิกายน 2024-กุมภาพันธ์ 2025</p>
           <p class="text-xl font-medium mb-2">Service Engineer</p>
+          <p class="text-xl font-medium mb-2">ความรับผิดชอบ</p>
           <ul class="list-disc pl-5 space-y-2">
-            <li>Install, repair, troubleshoot system</li>
-            <li>Config Switch (Aruba, Huawei, Cisco)</li>
-            <li>Programming</li>
+            <li>ติดตั้ง, ซ่อมแซม, แก้ไขปัญหาระบบ</li>
+            <li>ตั้งค่า Switch (Aruba, Huawei, Cisco)</li>
+            <li>โปรแกรมมิ่ง</li>
           </ul>
         </div>
       </div>
@@ -253,38 +254,6 @@ const skillsRefs = {
   tools: [],
 };
 
-const experienceObserver = new IntersectionObserver(
-  ([entry]) => {
-    if (entry.isIntersecting) {
-      experienceSection.value?.classList.add("opacity-100", "translate-y-0");
-      experienceSection.value?.classList.remove("opacity-0", "translate-y-10");
-
-      setTimeout(() => {
-        experienceTitle.value?.classList.add("opacity-100", "translate-y-0");
-        experienceTitle.value?.classList.remove("opacity-0", "translate-y-5");
-      }, 300);
-
-      setTimeout(() => {
-        experienceItem1.value?.classList.add("opacity-100", "translate-y-0");
-        experienceItem1.value?.classList.remove("opacity-0", "translate-y-5");
-      }, 600);
-    } else {
-      experienceSection.value?.classList.remove("opacity-100", "translate-y-0");
-      experienceSection.value?.classList.add("opacity-0", "translate-y-10");
-
-      experienceTitle.value?.classList.remove("opacity-100", "translate-y-0");
-      experienceTitle.value?.classList.add("opacity-0", "translate-y-5");
-
-      experienceItem1.value?.classList.remove("opacity-100", "translate-y-0");
-      experienceItem1.value?.classList.add("opacity-0", "translate-y-5");
-    }
-  },
-  { threshold: 0.2 }
-);
-
-if (experienceSection.value) {
-  experienceObserver.observe(experienceSection.value);
-}
 // Typewriter texts
 const texts = ["Frontend Developer | Web Developer "];
 
@@ -365,7 +334,44 @@ onMounted(() => {
   };
 
   setTimeout(type, 1000);
+  const experienceObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        experienceSection.value?.classList.add("opacity-100", "translate-y-0");
+        experienceSection.value?.classList.remove(
+          "opacity-0",
+          "translate-y-10"
+        );
 
+        setTimeout(() => {
+          experienceTitle.value?.classList.add("opacity-100", "translate-y-0");
+          experienceTitle.value?.classList.remove("opacity-0", "translate-y-5");
+        }, 300);
+
+        setTimeout(() => {
+          experienceItem1.value?.classList.add("opacity-100", "translate-y-0");
+          experienceItem1.value?.classList.remove("opacity-0", "translate-y-5");
+        }, 600);
+      } else {
+        experienceSection.value?.classList.remove(
+          "opacity-100",
+          "translate-y-0"
+        );
+        experienceSection.value?.classList.add("opacity-0", "translate-y-10");
+
+        experienceTitle.value?.classList.remove("opacity-100", "translate-y-0");
+        experienceTitle.value?.classList.add("opacity-0", "translate-y-5");
+
+        experienceItem1.value?.classList.remove("opacity-100", "translate-y-0");
+        experienceItem1.value?.classList.add("opacity-0", "translate-y-5");
+      }
+    },
+    { threshold: 0.2 }
+  );
+
+  if (experienceSection.value) {
+    experienceObserver.observe(experienceSection.value);
+  }
   // IntersectionObserver for About Section
   const aboutObserver = new IntersectionObserver(
     ([entry]) => {
