@@ -117,7 +117,13 @@
 <script setup>
 import { ref } from "vue";
 
-const menuItems = ["หน้าหลัก", "เกี่ยวกับ", "การทำงาน", "ติดต่อ", "ความสามารถ"];
+const menuItems = [
+  "หน้าหลัก",
+  "เกี่ยวกับ",
+  "ความสามารถ",
+  "ประสบการณ์",
+  "โปรเจกต์",
+];
 const activeItem = ref(null);
 </script>
 

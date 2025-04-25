@@ -227,9 +227,6 @@ const validateForm = () => {
 // Submit form
 const submitForm = () => {
   if (validateForm()) {
-    // Here you would typically send the data to your backend
-    alert("ส่งข้อมูลสำเร็จ!");
-
     // Reset form
     Object.keys(formData).forEach((key) => {
       formData[key] = "";

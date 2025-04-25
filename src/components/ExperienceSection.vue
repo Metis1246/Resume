@@ -18,7 +18,7 @@
       >
         <h3 class="text-2xl font-semibold mb-2">บริษัท ลานานคอม จำกัด</h3>
         <p class="text-lg opacity-80 mb-4">พฤศจิกายน 2024-กุมภาพันธ์ 2025</p>
-        <p class="text-xl font-medium mb-2">Service Engineer</p>
+        <p class="text-xl font-medium mb-2">Service Engineer (ฝึกงาน)</p>
         <p class="text-xl font-medium mb-2">ความรับผิดชอบ</p>
         <ul class="list-disc pl-5 space-y-2">
           <li>ติดตั้ง, ซ่อมแซม, แก้ไขปัญหาระบบ</li>

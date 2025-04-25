@@ -42,7 +42,7 @@
             <span
               class="bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100 px-3 py-1 rounded-md text-sm"
             >
-              Vue
+              Nuxt
             </span>
             <span
               class="bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100 px-3 py-1 rounded-md text-sm"
