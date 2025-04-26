@@ -352,12 +352,10 @@ export default {
 
     const initDarkMode = () => {
       const stored = localStorage.getItem("darkMode");
-      darkMode.value =
-        stored === "true" ||
-        (window.matchMedia("(prefers-color-scheme: dark)").matches &&
-          stored === null);
+      // ตั้งค่า default เป็น light mode โดยตรง
+      darkMode.value = stored === "true"; // ถ้าไม่มีค่าใน localStorage จะเป็น false
       document.documentElement.classList.toggle("dark", darkMode.value);
-      emit("dark-mode-changed", darkMode.value); // ส่งค่า darkMode เริ่มต้นไปยัง App.vue
+      emit("dark-mode-changed", darkMode.value);
     };
 
     const changeLanguage = (lang) => {
