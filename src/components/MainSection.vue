@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col md:flex-row min-h-[80vh] px-5 md:px-[5%]">
+  <div
+    id="main-section"
+    class="flex flex-col md:flex-row min-h-[80vh] px-5 md:px-[5%]"
+  >
     <div class="flex-1 flex flex-col justify-center text-black dark:text-white">
       <div class="text-xl mb-4 opacity-80">{{ $t("main.greeting") }}</div>
       <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $t("main.name") }}</h1>

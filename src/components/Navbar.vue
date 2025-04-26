@@ -1,7 +1,9 @@
+//navbar.vue
 <template>
-  <div class="m-4">
+  <div class="navbar-wrapper" :class="{ 'navbar-scrolled': isScrolled }">
     <nav
-      class="bg-white dark:bg-black-200 backdrop-blur-md shadow-lg rounded-3xl shadow-gray-300/50 dark:shadow-gray-700/50"
+      class="bg-white dark:bg-black-200 backdrop-blur-md shadow-lg rounded-3xl shadow-gray-300/50 dark:shadow-gray-700/50 transition-all duration-300"
+      :class="{ 'navbar-shrink': isScrolled }"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
@@ -17,14 +19,15 @@
             <div class="ml-10 flex items-center space-x-8">
               <!-- Main Navigation -->
               <div class="flex space-x-6 relative">
-                <router-link
+                <a
                   v-for="(item, index) in navigationItems"
                   :key="index"
-                  :to="item.to"
+                  :href="item.to"
+                  @click.prevent="scrollToSection(item.to)"
                   class="group relative py-2 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-200 font-medium after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-black dark:after:bg-white after:transition-all after:duration-300 hover:after:w-full"
                 >
                   {{ item.text }}
-                </router-link>
+                </a>
               </div>
 
               <!-- Right Controls -->
@@ -185,15 +188,15 @@
           class="md:hidden bg-white dark:bg-gray-900 rounded-b-3xl shadow-inner"
         >
           <div class="px-2 pt-2 pb-3 space-y-2 flex flex-col">
-            <router-link
+            <a
               v-for="(item, index) in navigationItems"
               :key="index"
-              :to="item.to"
+              :href="item.to"
+              @click.prevent="scrollToSection(item.to)"
               class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
-              @click="isMobileMenuOpen = false"
             >
               {{ item.text }}
-            </router-link>
+            </a>
 
             <div
               class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center px-4"
@@ -319,6 +322,7 @@ export default {
     const darkMode = ref(false);
     const isMobileMenuOpen = ref(false);
     const isLangMenuOpen = ref(false);
+    const isScrolled = ref(false);
     const { t, locale } = useI18n(); // ใช้งาน i18n
 
     // แทนที่จะใช้ ref โดยตรง ให้ใช้ locale จาก i18n
@@ -326,12 +330,12 @@ export default {
 
     // สร้าง computed property สำหรับแสดงรายการเมนูตามภาษา
     const navigationItems = computed(() => [
-      { text: t("navbar.home"), to: "/" },
-      { text: t("navbar.about"), to: "/travel" },
-      { text: t("navbar.skills"), to: "/skills" },
-      { text: t("navbar.experience"), to: "/works" },
-      { text: t("navbar.projects"), to: "/contact" },
-      { text: t("navbar.contact"), to: "/contact" },
+      { text: t("navbar.home"), to: "#main-section" },
+      { text: t("navbar.about"), to: "#about-section" },
+      { text: t("navbar.skills"), to: "#skills-section" },
+      { text: t("navbar.experience"), to: "#experience-section" },
+      { text: t("navbar.projects"), to: "#projects-section" },
+      { text: t("navbar.contact"), to: "#contact-section" },
     ]);
 
     const languages = [
@@ -365,14 +369,32 @@ export default {
     const closeMenus = (e) => {
       if (!e.target.closest(".relative")) isLangMenuOpen.value = false;
     };
+    // Add this function to handle scrolling
+    const handleScroll = () => {
+      isScrolled.value = window.scrollY > 50;
+    };
 
+    // Add this function to handle smooth scrolling to sections
+    const scrollToSection = (sectionId) => {
+      const el = document.querySelector(sectionId);
+      if (el) {
+        // คำนวณ offset โดยหักความสูงของ navbar ออก (ประมาณ 80px)
+        const navbarHeight = 80;
+        const yOffset =
+          el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+        window.scrollTo({ top: yOffset, behavior: "smooth" });
+      }
+      isMobileMenuOpen.value = false;
+    };
     onMounted(() => {
       initDarkMode();
       window.addEventListener("click", closeMenus);
+      window.addEventListener("scroll", handleScroll); // Add scroll listener
     });
 
     onUnmounted(() => {
       window.removeEventListener("click", closeMenus);
+      window.removeEventListener("scroll", handleScroll); // Remove scroll listener
     });
 
     // เพิ่ม watch เพื่อส่งค่า darkMode เมื่อมีการเปลี่ยนแปลง
@@ -384,16 +406,38 @@ export default {
       darkMode,
       isMobileMenuOpen,
       isLangMenuOpen,
+      isScrolled, // Expose isScrolled to template
       currentLanguage,
       navigationItems,
       languages,
       toggleDarkMode,
       changeLanguage,
+      scrollToSection, // Expose the new function
     };
   },
 };
 </script>
+
 <style scoped>
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.navbar-scrolled {
+  padding: 0.5rem 4rem;
+}
+
+.navbar-shrink {
+  transform: scale(0.97);
+}
+
+/* Rest of your styles remain the same */
 .nav-link {
   position: relative;
   padding-bottom: 2px;
@@ -404,7 +448,7 @@ export default {
   transition: all 0.3s ease;
 }
 
-/* Dark mode styles if needed */
+/* Dark mode styles */
 :root.dark .bg-white {
   background-color: #1e1e2e;
 }
