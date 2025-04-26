@@ -1,3 +1,4 @@
+//navbar.vue
 <template>
   <div class="navbar-wrapper" :class="{ 'navbar-scrolled': isScrolled }">
     <nav

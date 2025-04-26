@@ -2,16 +2,16 @@ import { createI18n } from "vue-i18n";
 import th from "./i18n/th";
 import en from "./i18n/en";
 
-// ใช้ lowercase สำหรับ locale
-const savedLocale = localStorage.getItem("locale") || "th";
+// บันทึกการตั้งค่าภาษาในท้องถิ่น
+const savedLocale = localStorage.getItem("locale") || "TH";
 
 const i18n = createI18n({
   legacy: false, // ใช้โหมด Composition API
-  locale: savedLocale, // ภาษาเริ่มต้น
-  fallbackLocale: "th", // ภาษา fallback
+  locale: savedLocale, // ตั้งค่าภาษาเริ่มต้น
+  fallbackLocale: "TH", // ภาษาสำรองเมื่อไม่พบคำแปล
   messages: {
-    th, // ใช้ lowercase
-    en,
+    TH: th,
+    EN: en,
   },
 });
 
