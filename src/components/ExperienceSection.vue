@@ -7,7 +7,7 @@
       ref="experienceTitle"
       class="text-3xl font-bold mb-8 opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white"
     >
-      ประสบการณ์
+      {{ $t("experience.title") }}
     </h2>
 
     <div class="max-w-3xl mx-auto">
@@ -16,14 +16,22 @@
         class="bg-white dark:bg-black rounded-xl p-6 md:p-8 shadow-lg mb-6 text-left opacity-0 translate-y-5 transition-all duration-700 text-black dark:text-white shadow-gray-300/50 dark:shadow-gray-700/50"
         ref="experienceItem1"
       >
-        <h3 class="text-2xl font-semibold mb-2">บริษัท ลานานคอม จำกัด</h3>
-        <p class="text-lg opacity-80 mb-4">พฤศจิกายน 2024-กุมภาพันธ์ 2025</p>
-        <p class="text-xl font-medium mb-2">Service Engineer (ฝึกงาน)</p>
-        <p class="text-xl font-medium mb-2">ความรับผิดชอบ</p>
+        <h3 class="text-2xl font-semibold mb-2">
+          {{ $t("experience.company1.name") }}
+        </h3>
+        <p class="text-lg opacity-80 mb-4">
+          {{ $t("experience.company1.period") }}
+        </p>
+        <p class="text-xl font-medium mb-2">
+          {{ $t("experience.company1.position") }}
+        </p>
+        <p class="text-xl font-medium mb-2">
+          {{ $t("experience.responsibilities") }}
+        </p>
         <ul class="list-disc pl-5 space-y-2">
-          <li>ติดตั้ง, ซ่อมแซม, แก้ไขปัญหาระบบ</li>
-          <li>ตั้งค่า Switch (Aruba, Huawei, Cisco)</li>
-          <li>โปรแกรมมิ่ง</li>
+          <li>{{ $t("experience.company1.responsibility1") }}</li>
+          <li>{{ $t("experience.company1.responsibility2") }}</li>
+          <li>{{ $t("experience.company1.responsibility3") }}</li>
         </ul>
       </div>
     </div>
@@ -32,6 +40,9 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 const experienceSection = ref(null);
 const experienceTitle = ref(null);

@@ -33,7 +33,9 @@
                 <button
                   @click="toggleDarkMode"
                   class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
-                  :title="darkMode ? 'Light Mode' : 'Dark Mode'"
+                  :title="
+                    darkMode ? $t('navbar.lightMode') : $t('navbar.darkMode')
+                  "
                 >
                   <svg
                     v-if="darkMode"
@@ -229,7 +231,9 @@
                     d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
                   />
                 </svg>
-                <span>{{ darkMode ? "Light Mode" : "Dark Mode" }}</span>
+                <span>{{
+                  darkMode ? $t("navbar.lightMode") : $t("navbar.darkMode")
+                }}</span>
               </button>
 
               <!-- Language Selector -->
@@ -305,7 +309,8 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted, watch } from "vue";
+import { ref, onMounted, onUnmounted, watch, computed } from "vue";
+import { useI18n } from "vue-i18n";
 
 export default {
   name: "Navbar",
@@ -314,16 +319,20 @@ export default {
     const darkMode = ref(false);
     const isMobileMenuOpen = ref(false);
     const isLangMenuOpen = ref(false);
-    const currentLanguage = ref("TH");
+    const { t, locale } = useI18n(); // ใช้งาน i18n
 
-    const navigationItems = [
-      { text: "หน้าหลัก", to: "/" },
-      { text: "เกี่ยวกับ", to: "/travel" },
-      { text: "ความสามารถ", to: "/skills" },
-      { text: "ประสบการณ์", to: "/works" },
-      { text: "โปรเจกต์", to: "/contact" },
-      { text: "ติดต่อ", to: "/contact" },
-    ];
+    // แทนที่จะใช้ ref โดยตรง ให้ใช้ locale จาก i18n
+    const currentLanguage = computed(() => locale.value);
+
+    // สร้าง computed property สำหรับแสดงรายการเมนูตามภาษา
+    const navigationItems = computed(() => [
+      { text: t("navbar.home"), to: "/" },
+      { text: t("navbar.about"), to: "/travel" },
+      { text: t("navbar.skills"), to: "/skills" },
+      { text: t("navbar.experience"), to: "/works" },
+      { text: t("navbar.projects"), to: "/contact" },
+      { text: t("navbar.contact"), to: "/contact" },
+    ]);
 
     const languages = [
       { code: "TH", name: "ไทย", flag: "img/th.png" },
@@ -348,7 +357,8 @@ export default {
     };
 
     const changeLanguage = (lang) => {
-      currentLanguage.value = lang;
+      locale.value = lang; // เปลี่ยนภาษาผ่าน i18n
+      localStorage.setItem("locale", lang); // บันทึกการตั้งค่าภาษาลงใน localStorage
       isLangMenuOpen.value = false;
     };
 

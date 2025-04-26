@@ -7,7 +7,7 @@
       ref="projectsTitle"
       class="text-3xl font-bold mb-16 opacity-0 translate-y-5 transition-all duration-700"
     >
-      โปรเจกต์ของฉัน
+      {{ $t("projects.title") }}
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -17,11 +17,7 @@
         class="bg-white dark:bg-black rounded-lg overflow-hidden shadow-lg opacity-0 translate-y-10 transition-all duration-700 hover:shadow-xl transform hover:-translate-y-2 transition-all border border-gray-200 dark:border-gray-700 shadow-gray-300/50 dark:shadow-gray-700/50"
       >
         <div class="relative">
-          <img
-            src="/img/dev1.png"
-            alt="ผลิตภัณฑ์อัจฉริยะ"
-            class="w-full h-64 object-cover"
-          />
+          <img src="/img/dev1.png" class="w-full h-64 object-cover" />
           <span
             class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-md font-semibold"
           >
@@ -31,11 +27,10 @@
 
         <div class="p-6 text-left">
           <h3 class="text-xl font-bold mb-4">
-            เว็บไซต์ขายบัญชีเกมและบัญชีสรีมมิ่ง
+            {{ $t("projects.project1.title") }}
           </h3>
           <p class="mb-6 text-gray-700 dark:text-gray-300">
-            เว็บไซต์ขายบัญชีเกมและบัญชีสรีมมิ่ง ที่สามารถซื้อได้ตลอด 24 ชั่วโมง
-            พัฒนาด้วย Nuxt 3, Node.js และ MongoDB
+            {{ $t("projects.project1.description") }}
           </p>
 
           <div class="flex flex-wrap gap-2">
@@ -64,11 +59,7 @@
         class="bg-white dark:bg-black rounded-lg overflow-hidden shadow-lg opacity-0 translate-y-10 transition-all duration-700 hover:shadow-xl transform hover:-translate-y-2 transition-all border border-gray-200 dark:border-gray-700 shadow-gray-300/50 dark:shadow-gray-700/50"
       >
         <div class="relative">
-          <img
-            src="/img/dev2.png"
-            alt="อุปกรณ์สายเคเบิล"
-            class="w-full h-64 object-cover"
-          />
+          <img src="/img/dev2.png" class="w-full h-64 object-cover" />
           <span
             class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-md font-semibold"
           >
@@ -77,9 +68,11 @@
         </div>
 
         <div class="p-6 text-left">
-          <h3 class="text-xl font-bold mb-4">เว็บไซต์เรซูเม่</h3>
+          <h3 class="text-xl font-bold mb-4">
+            {{ $t("projects.project2.title") }}
+          </h3>
           <p class="mb-6 text-gray-700 dark:text-gray-300">
-            เว็บไซต์เรซูเม่ พัฒนาด้วย Vue 3, Vite
+            {{ $t("projects.project2.description") }}
           </p>
 
           <div class="flex flex-wrap gap-2">
@@ -97,6 +90,9 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 // Projects section refs
 const projectsSection = ref(null);

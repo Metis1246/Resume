@@ -7,7 +7,7 @@
       ref="contactTitle"
       class="text-3xl font-bold mb-12 opacity-0 translate-y-5 transition-all duration-700"
     >
-      ติดต่อ
+      {{ $t("contact.title") }}
     </h2>
 
     <div
@@ -23,7 +23,8 @@
             <label
               for="firstName"
               class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
-              >ชื่อ <span class="text-red-500">*</span></label
+              >{{ $t("contact.firstName") }}
+              <span class="text-red-500">*</span></label
             >
             <input
               type="text"
@@ -41,7 +42,8 @@
             <label
               for="lastName"
               class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
-              >นามสกุล <span class="text-red-500">*</span></label
+              >{{ $t("contact.lastName") }}
+              <span class="text-red-500">*</span></label
             >
             <input
               type="text"
@@ -62,7 +64,8 @@
             <label
               for="email"
               class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
-              >อีเมล <span class="text-red-500">*</span></label
+              >{{ $t("contact.email") }}
+              <span class="text-red-500">*</span></label
             >
             <input
               type="email"
@@ -80,7 +83,8 @@
             <label
               for="phone"
               class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
-              >เบอร์โทรศัพท์ <span class="text-red-500">*</span></label
+              >{{ $t("contact.phone") }}
+              <span class="text-red-500">*</span></label
             >
             <input
               type="tel"
@@ -100,7 +104,8 @@
           <label
             for="subject"
             class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
-            >หัวข้อติดต่อ <span class="text-red-500">*</span></label
+            >{{ $t("contact.subject") }}
+            <span class="text-red-500">*</span></label
           >
           <input
             type="text"
@@ -119,7 +124,8 @@
           <label
             for="message"
             class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
-            >รายละเอียด <span class="text-red-500">*</span></label
+            >{{ $t("contact.message") }}
+            <span class="text-red-500">*</span></label
           >
           <textarea
             id="message"
@@ -139,7 +145,7 @@
             type="submit"
             class="px-8 py-3 bg-black dark:bg-white text-white dark:text-black rounded-full font-medium hover:bg-blue-500 dark:hover:bg-blue-400 transition-all relative overflow-hidden"
           >
-            <span class="relative z-10">ยืนยัน</span>
+            <span class="relative z-10">{{ $t("contact.submit") }}</span>
           </button>
         </div>
       </form>
@@ -149,6 +155,9 @@
 
 <script setup>
 import { ref, reactive, onMounted } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 // Contact section refs
 const contactSection = ref(null);
@@ -186,38 +195,38 @@ const validateForm = () => {
 
   // Check required fields
   if (!formData.firstName.trim()) {
-    errors.firstName = "กรุณากรอกชื่อ";
+    errors.firstName = t("contact.errors.firstName");
     isValid = false;
   }
 
   if (!formData.lastName.trim()) {
-    errors.lastName = "กรุณากรอกนามสกุล";
+    errors.lastName = t("contact.errors.lastName");
     isValid = false;
   }
 
   if (!formData.email.trim()) {
-    errors.email = "กรุณากรอกอีเมล";
+    errors.email = t("contact.errors.emailRequired");
     isValid = false;
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-    errors.email = "กรุณากรอกอีเมลให้ถูกต้อง";
+    errors.email = t("contact.errors.emailInvalid");
     isValid = false;
   }
 
   if (!formData.phone.trim()) {
-    errors.phone = "กรุณากรอกเบอร์โทรศัพท์";
+    errors.phone = t("contact.errors.phoneRequired");
     isValid = false;
   } else if (!/^\d{9,10}$/.test(formData.phone.replace(/[- ]/g, ""))) {
-    errors.phone = "กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง";
+    errors.phone = t("contact.errors.phoneInvalid");
     isValid = false;
   }
 
   if (!formData.subject.trim()) {
-    errors.subject = "กรุณากรอกหัวข้อติดต่อ";
+    errors.subject = t("contact.errors.subject");
     isValid = false;
   }
 
   if (!formData.message.trim()) {
-    errors.message = "กรุณากรอกรายละเอียด";
+    errors.message = t("contact.errors.message");
     isValid = false;
   }
 

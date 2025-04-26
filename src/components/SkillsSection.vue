@@ -7,37 +7,37 @@
       ref="skillsTitle"
       class="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 opacity-0 translate-y-5 transition-all duration-700"
     >
-      ทักษะ
+      {{ $t("skill.title1") }}
     </h2>
 
     <!-- CATEGORIES -->
     <div class="space-y-12 md:space-y-16">
       <SkillCategory
-        title="Frontend"
+        :title="$t('skill.frontend')"
         :skills="frontendSkills"
         @category-mounted="setupCategoryRefs('frontend', $event)"
       />
 
       <SkillCategory
-        title="Backend"
+        :title="$t('skill.backend')"
         :skills="backendSkills"
         @category-mounted="setupCategoryRefs('backend', $event)"
       />
 
       <SkillCategory
-        title="Database"
+        :title="$t('skill.database')"
         :skills="databaseSkills"
         @category-mounted="setupCategoryRefs('database', $event)"
       />
 
       <SkillCategory
-        title="Server"
+        :title="$t('skill.server')"
         :skills="serverSkills"
         @category-mounted="setupCategoryRefs('server', $event)"
       />
 
       <SkillCategory
-        title="Tools"
+        :title="$t('skill.tools')"
         :skills="toolsSkills"
         @category-mounted="setupCategoryRefs('tools', $event)"
       />
@@ -47,7 +47,10 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useI18n } from "vue-i18n";
 import SkillCategory from "./SkillCategory.vue";
+
+const { t } = useI18n();
 
 // Skills section refs
 const skillsSection = ref(null);

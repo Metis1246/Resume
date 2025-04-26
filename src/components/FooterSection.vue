@@ -22,7 +22,7 @@
             @mouseover="activeItem = index"
             @mouseleave="activeItem = null"
           >
-            {{ item }}
+            {{ $t(`footer.menu.${item.key}`) }}
             <span
               class="absolute bottom-0 left-0 h-0.5 bg-black dark:bg-white transition-all duration-300"
               :class="activeItem === index ? 'w-full' : 'w-0'"
@@ -32,7 +32,7 @@
 
         <!-- Contact Info -->
         <div class="flex flex-col space-y-2">
-          <h3 class="font-semibold mb-2">ติดต่อ</h3>
+          <h3 class="font-semibold mb-2">{{ $t("footer.contactTitle") }}</h3>
           <!-- Phone -->
           <div class="flex items-center space-x-2">
             <svg
@@ -108,7 +108,10 @@
       <div
         class="border-t border-gray-200 dark:border-gray-800 mt-8 pt-6 text-center text-sm text-gray-600 dark:text-gray-400"
       >
-        <p>&copy; {{ new Date().getFullYear() }} MTE. สงวนลิขสิทธิ์ทั้งหมด.</p>
+        <p>
+          &copy; {{ new Date().getFullYear() }} MTE.
+          {{ $t("footer.copyright") }}
+        </p>
       </div>
     </div>
   </footer>
@@ -116,14 +119,18 @@
 
 <script setup>
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 const menuItems = [
-  "หน้าหลัก",
-  "เกี่ยวกับ",
-  "ความสามารถ",
-  "ประสบการณ์",
-  "โปรเจกต์",
+  { key: "home" },
+  { key: "about" },
+  { key: "skills" },
+  { key: "experience" },
+  { key: "projects" },
 ];
+
 const activeItem = ref(null);
 </script>
 

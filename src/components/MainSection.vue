@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col md:flex-row min-h-[80vh] px-5 md:px-[5%]">
     <div class="flex-1 flex flex-col justify-center text-black dark:text-white">
-      <div class="text-xl mb-4 opacity-80">สวัสดีครับ</div>
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">เมธีส นาเหมือง</h1>
+      <div class="text-xl mb-4 opacity-80">{{ $t("main.greeting") }}</div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $t("main.name") }}</h1>
       <p class="text-2xl md:text-3xl mb-8 opacity-90 h-[48px]">
         <span ref="typewriterText"></span><span class="animate-blink">|</span>
       </p>
@@ -18,12 +18,22 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
+import { useI18n } from "vue-i18n";
 
 const typewriterText = ref(null);
-const texts = ["Frontend Developer | Web Developer "];
+const { t, locale } = useI18n();
 
-onMounted(() => {
+// ตรวจสอบการเปลี่ยนภาษาและรีเซ็ต typewriter
+let typewriterInterval = null;
+
+const startTypewriter = () => {
+  if (typewriterInterval) {
+    clearTimeout(typewriterInterval);
+    typewriterInterval = null;
+  }
+
+  const texts = [t("main.profession")];
   let textIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
@@ -49,11 +59,25 @@ onMounted(() => {
       speed = 300;
     }
 
-    setTimeout(type, speed);
+    typewriterInterval = setTimeout(type, speed);
   };
 
   setTimeout(type, 1000);
+};
+
+onMounted(() => {
+  startTypewriter();
 });
+
+// เมื่อภาษาเปลี่ยน ให้รีเซ็ต typewriter
+watch(
+  () => locale.value,
+  () => {
+    if (typewriterText.value) {
+      startTypewriter();
+    }
+  }
+);
 </script>
 
 <style scoped>

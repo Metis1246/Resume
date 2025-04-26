@@ -7,7 +7,7 @@
       ref="aboutTitle"
       class="text-3xl font-bold mb-6 opacity-0 translate-y-5 transition-all duration-700"
     >
-      เกี่ยวกับฉัน
+      {{ $t("about.title1") }}
     </h2>
 
     <div class="leading-relaxed max-w-3xl mx-auto space-y-4 text-left">
@@ -24,16 +24,31 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t, locale } = useI18n();
 
 const aboutSection = ref(null);
 const aboutTitle = ref(null);
-const aboutRefs = [];
+const aboutRefs = ref([]);
+const aboutLines = ref([]);
 
-// Content lines
-const aboutLines = [
-  "สวัสดีครับผม นายเมธีส นาเหมือง สนใจตำแหน่ง Frontend Developer และ Web Developer สำเร็จการศึกษาระดับปริญญาตรี สาขาวิศวกรรมคอมพิวเตอร์ คณะเทคโนโลยีอุตสาหกรรมจากมหาวิทยาลัยราชภัฏลำปาง ผมได้มุ่งมั่นศึกษา เรียนรู้และเพิ่มทักษะความสามารถของตัวเองอยู่เสมอและมีความละเอียดรอบคอบ สามารถคิดแบบตรรกะ สามารถทำงานภายใต้แรงกัดดันได้และสามรถทำงานเเบบทีมได้ดี",
-];
+// ฟังก์ชันอัปเดตข้อความเกี่ยวกับฉันตามภาษา
+const updateAboutText = () => {
+  aboutLines.value = [t("about.line1")];
+};
+
+// เรียกครั้งแรกเมื่อโหลด component
+updateAboutText();
+
+// ตรวจสอบการเปลี่ยนภาษา
+watch(
+  () => locale.value,
+  () => {
+    updateAboutText();
+  }
+);
 
 onMounted(() => {
   // IntersectionObserver for About Section
@@ -47,7 +62,7 @@ onMounted(() => {
         aboutTitle.value?.classList.add("opacity-100", "translate-y-0");
         aboutTitle.value?.classList.remove("opacity-0", "translate-y-5");
 
-        aboutRefs.forEach((el, i) => {
+        aboutRefs.value.forEach((el, i) => {
           setTimeout(() => {
             el?.classList.add("opacity-100", "translate-y-0");
             el?.classList.remove("opacity-0", "translate-y-5");
@@ -61,7 +76,7 @@ onMounted(() => {
         aboutTitle.value?.classList.remove("opacity-100", "translate-y-0");
         aboutTitle.value?.classList.add("opacity-0", "translate-y-5");
 
-        aboutRefs.forEach((el) => {
+        aboutRefs.value.forEach((el) => {
           el?.classList.remove("opacity-100", "translate-y-0");
           el?.classList.add("opacity-0", "translate-y-5");
         });
