@@ -1,3 +1,4 @@
+//app.vue
 <template>
   <div
     class="relative min-h-screen w-full overflow-hidden"

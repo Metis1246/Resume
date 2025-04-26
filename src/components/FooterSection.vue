@@ -7,7 +7,12 @@
       <div class="flex flex-col md:flex-row justify-between items-center py-4">
         <!-- Logo -->
         <div class="mb-6 md:mb-0">
-          <a href="#" class="text-2xl font-bold">MTE</a>
+          <a
+            href="#main-section"
+            @click.prevent="scrollToSection('#main-section')"
+            class="text-2xl font-bold"
+            >MTE</a
+          >
         </div>
 
         <!-- Menu Items -->
@@ -17,7 +22,8 @@
           <a
             v-for="(item, index) in menuItems"
             :key="index"
-            href="#"
+            :href="item.to"
+            @click.prevent="scrollToSection(item.to)"
             class="relative group py-2"
             @mouseover="activeItem = index"
             @mouseleave="activeItem = null"
@@ -124,14 +130,26 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 const menuItems = [
-  { key: "home" },
-  { key: "about" },
-  { key: "skills" },
-  { key: "experience" },
-  { key: "projects" },
+  { key: "home", to: "#main-section" },
+  { key: "about", to: "#about-section" },
+  { key: "skills", to: "#skills-section" },
+  { key: "experience", to: "#experience-section" },
+  { key: "projects", to: "#projects-section" },
 ];
 
 const activeItem = ref(null);
+
+// เพิ่มฟังก์ชันเลื่อนหน้าจอไปยังส่วนต่างๆ
+const scrollToSection = (sectionId) => {
+  const el = document.querySelector(sectionId);
+  if (el) {
+    // คำนวณ offset โดยหักความสูงของ navbar ออก (ประมาณ 80px)
+    const navbarHeight = 80;
+    const yOffset =
+      el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+    window.scrollTo({ top: yOffset, behavior: "smooth" });
+  }
+};
 </script>
 
 <style scoped>

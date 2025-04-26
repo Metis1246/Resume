@@ -1,5 +1,6 @@
 <template>
   <div
+    id="skills-section"
     ref="skillsSection"
     class="min-h-[10vh] px-3 sm:px-5 md:px-[5%] pt-20 sm:pt-24 md:pt-32 lg:pt-44 py-12 md:py-16 text-center text-base md:text-lg opacity-0 translate-y-10 transition-all duration-1000 ease-in-out text-black dark:text-white"
   >

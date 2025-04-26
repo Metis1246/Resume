@@ -1,5 +1,6 @@
 <template>
   <div
+    id="projects-section"
     ref="projectsSection"
     class="min-h-[100vh] px-5 md:px-[5%] pt-32 md:pt-44 py-16 text-center text-lg opacity-0 translate-y-10 transition-all duration-1000 ease-in-out text-black dark:text-white"
   >
