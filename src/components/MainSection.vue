@@ -24,7 +24,7 @@ import { useI18n } from "vue-i18n";
 const typewriterText = ref(null);
 const { t, locale } = useI18n();
 
-// ตรวจสอบการเปลี่ยนภาษาและรีเซ็ต typewriter
+// ตรวจสอบการเปลี่ยนภาษาและรีเซ็ต
 let typewriterInterval = null;
 
 const startTypewriter = () => {
