@@ -1,3 +1,4 @@
+//mainsection.vue
 <template>
   <div
     id="main-section"

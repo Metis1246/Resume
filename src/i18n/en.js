@@ -17,7 +17,7 @@ export default {
   about: {
     title1: "About Me",
     line1:
-      "Hello, I'm Methaes Nameuang, interested in Frontend Developer and Web Developer positions. I graduated with a Bachelor's degree in Computer Engineering from the Faculty of Industrial Technology at Lampang Rajabhat University. I have consistently studied, learned, and improved my skills, with attention to detail, logical thinking, ability to work under pressure, and good teamwork skills.",
+      "Hello, I'm Metis Namaung, interested in Frontend Developer and Web Developer positions. I graduated with a Bachelor's degree in Computer Engineering from the Faculty of Industrial Technology at Lampang Rajabhat University. I have consistently studied, learned, and improved my skills, with attention to detail, logical thinking, ability to work under pressure, and good teamwork skills.",
   },
   skill: {
     title1: "Skill",
