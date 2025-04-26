@@ -314,54 +314,59 @@ import { useI18n } from "vue-i18n";
 
 export default {
   name: "Navbar",
-  emits: ["dark-mode-changed"], // เพิ่ม emit เพื่อส่งค่า darkMode
+  emits: ["dark-mode-changed"],
   setup(props, { emit }) {
     const darkMode = ref(false);
     const isMobileMenuOpen = ref(false);
     const isLangMenuOpen = ref(false);
-    const { t, locale } = useI18n(); // ใช้งาน i18n
+    const { t, locale } = useI18n();
 
-    // แทนที่จะใช้ ref โดยตรง ให้ใช้ locale จาก i18n
+    // ใช้ locale ปัจจุบัน
     const currentLanguage = computed(() => locale.value);
 
-    // สร้าง computed property สำหรับแสดงรายการเมนูตามภาษา
+    // รายการเมนูตามภาษา
     const navigationItems = computed(() => [
       { text: t("navbar.home"), to: "/" },
       { text: t("navbar.about"), to: "/travel" },
       { text: t("navbar.skills"), to: "/skills" },
       { text: t("navbar.experience"), to: "/works" },
-      { text: t("navbar.projects"), to: "/contact" },
+      { text: t("navbar.projects"), to: "/projects" },
       { text: t("navbar.contact"), to: "/contact" },
     ]);
 
+    // รายชื่อภาษา ใช้ lowercase
     const languages = [
-      { code: "TH", name: "ไทย", flag: "img/th.png" },
-      { code: "EN", name: "English", flag: "img/en.png" },
+      { code: "th", name: "ไทย", flag: "img/th.png" },
+      { code: "en", name: "English", flag: "img/en.png" },
     ];
 
+    // toggle dark mode
     const toggleDarkMode = () => {
       darkMode.value = !darkMode.value;
       localStorage.setItem("darkMode", darkMode.value);
       document.documentElement.classList.toggle("dark", darkMode.value);
-      emit("dark-mode-changed", darkMode.value); // ส่งค่า darkMode ไปยัง App.vue
+      emit("dark-mode-changed", darkMode.value);
     };
 
+    // ตั้งค่า dark mode ตอน mount
     const initDarkMode = () => {
       const stored = localStorage.getItem("darkMode");
       darkMode.value =
         stored === "true" ||
-        (window.matchMedia("(prefers-color-scheme: dark)").matches &&
-          stored === null);
+        (window.matchMedia("(prefers-color-scheme: dark)").matches && stored === null);
       document.documentElement.classList.toggle("dark", darkMode.value);
-      emit("dark-mode-changed", darkMode.value); // ส่งค่า darkMode เริ่มต้นไปยัง App.vue
+      emit("dark-mode-changed", darkMode.value);
     };
 
+    // เปลี่ยนภาษา (force lowercase)
     const changeLanguage = (lang) => {
-      locale.value = lang; // เปลี่ยนภาษาผ่าน i18n
-      localStorage.setItem("locale", lang); // บันทึกการตั้งค่าภาษาลงใน localStorage
+      const lowerLang = lang.toLowerCase();
+      locale.value = lowerLang;
+      localStorage.setItem("locale", lowerLang);
       isLangMenuOpen.value = false;
     };
 
+    // ปิดเมนูเมื่อคลิกนอก
     const closeMenus = (e) => {
       if (!e.target.closest(".relative")) isLangMenuOpen.value = false;
     };
@@ -375,7 +380,7 @@ export default {
       window.removeEventListener("click", closeMenus);
     });
 
-    // เพิ่ม watch เพื่อส่งค่า darkMode เมื่อมีการเปลี่ยนแปลง
+    // ติดตาม darkMode
     watch(darkMode, (newValue) => {
       emit("dark-mode-changed", newValue);
     });
@@ -393,6 +398,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .nav-link {
   position: relative;
