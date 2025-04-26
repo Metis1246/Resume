@@ -38,7 +38,7 @@ export default {
 
     // กำหนดพารามิเตอร์ของเส้น
     const LINE_COUNT = 100;
-    const LINE_SPEED = 1.5;
+    const LINE_SPEED = 0.5;
     const MOUSE_SENSITIVITY = 0.2;
 
     class Line {
