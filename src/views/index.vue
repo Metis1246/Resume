@@ -1,6 +1,5 @@
 <template>
   <div class="relative overflow-hidden font-[Kanit]">
-    <!-- Navbar is now fixed, so add padding to prevent content from going under it -->
     <div class="pt-28">
       <MainSection />
       <ScrollIndicator />
