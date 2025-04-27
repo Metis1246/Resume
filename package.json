@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy:resume": "scp -r dist/* root@128.199.102.246:/var/www/resume"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
